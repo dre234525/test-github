@@ -1,11 +1,10 @@
-"""Калькулятор личных финансов: доходы, расходы, баланс."""
+
 
 import os
 
 PINK = "\033[95m"
 RESET = "\033[0m"
 
-# Список операций: словари с ключами type, amount, category, date
 operations = []
 
 
@@ -24,7 +23,6 @@ def read_amount():
 
 
 def read_date():
-    # Формат ДД.ММ.ГГГГ, проверяем без библиотек
     while True:
         raw = input("Дата (ДД.ММ.ГГГГ): ").strip()
         parts = raw.split(".")
@@ -66,7 +64,7 @@ def show_balance():
 
 
 def main():
-    os.system("")  # включает цвета ANSI в консоли Windows
+    os.system("")
     print(PINK, end="")
     actions = {
         "1": lambda: add_operation("income"),
