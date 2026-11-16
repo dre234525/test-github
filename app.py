@@ -28,14 +28,14 @@ def read_date():
             day, month, year = (int(p) for p in parts)
             if 1 <= day <= 31 and 1 <= month <= 12 and len(parts[2]) == 4:
                 return raw
-        print("Неверная дата, пример: 16.11.2026")
+        print("Неверная дата")
 
 
-def add_operation(kind):
+def add_operation(t):
     amount = read_amount()
     category = input("Категория: ").strip() or "Без категории"
     date = read_date()
-    operations.append({"type": kind, "amount": amount, "category": category, "date": date})
+    operations.append({"type": t, "amount": amount, "category": category, "date": date})
     print("Операция добавлена")
 
 
@@ -45,7 +45,7 @@ def show_operations():
         return
     for i, op in enumerate(operations, 1):
         sign = "+" if op["type"] == "income" else "-"
-        print(f"{i}. {op['date']}  {sign}{op['amount']:.2f}  {op['category']}")
+        print(f"{i}. {op['date']}  {sign}{op['amount']}  {op['category']}")
 
 
 def get_balance():
@@ -56,9 +56,9 @@ def get_balance():
 
 def show_balance():
     income, expense, balance = get_balance()
-    print(f"Доходы:  {income:.2f}")
-    print(f"Расходы: {expense:.2f}")
-    print(f"Баланс:  {balance:.2f}")
+    print(f"Доходы:  {income}")
+    print(f"Расходы: {expense}")
+    print(f"Баланс:  {balance}")
 
 
 def main():
@@ -70,26 +70,21 @@ def main():
         "3": show_operations,
         "4": show_balance,
     }
-    try:
-        while True:
-            print("\nКалькулятор личных финансов")
-            print("1. Добавить доход")
-            print("2. Добавить расход")
-            print("3. Список операций")
-            print("4. Баланс")
-            print("0. Выход")
-            choice = input("Выберите пункт: ").strip()
-            if choice == "0":
-                break
-            action = actions.get(choice)
-            if action:
-                action()
-            else:
-                print("Нет такого пункта")
-    except (KeyboardInterrupt, EOFError):
-        print()
-    finally:
-        print("До свидания!" + RESET)
+    while True:
+        print("\nКалькулятор личных финансов")
+        print("1. Добавить доход")
+        print("2. Добавить расход")
+        print("3. Список операций")
+        print("4. Баланс")
+        print("0. Выход")
+        choice = input("Выберите пункт: ").strip()
+        if choice == "0":
+            break
+        action = actions.get(choice)
+        if action:
+            action()
+        else:
+            print("Нет такого пункта")
 
 
 if __name__ == "__main__":
