@@ -1,6 +1,8 @@
 import os
 
-PINK = "\033[95m"
+
+BLACK_BG = "\033[40m"     
+WHITE_TEXT = "\033[37m"    
 RESET = "\033[0m"
 
 operations = []
@@ -63,7 +65,7 @@ def show_balance():
 
 def main():
     os.system("")
-    print(PINK, end="")
+    print(BLACK_BG + WHITE_TEXT + "Белый текст на чёрном фоне" + RESET)
     actions = {
         "1": lambda: add_operation("income"),
         "2": lambda: add_operation("expense"),
