@@ -1,5 +1,3 @@
-
-
 import os
 
 PINK = "\033[95m"
